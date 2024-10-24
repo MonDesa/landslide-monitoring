@@ -5,7 +5,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/rubenszinho/landslide-monitoring/internal/mqttclient"
-	"github.com/rubenszinho/landslide-monitoring/internal/sensors"
+	// "github.com/rubenszinho/landslide-monitoring/internal/sensors"
 )
 
 func RunCoordinator() {
@@ -19,7 +19,9 @@ func RunCoordinator() {
 
 	client := mqttclient.NewClient(broker, clientID)
 
-	go sensors.PublishSensorData(client)
+	// Coordinator are not responsible to publish sensor data yet, they directly publish to broker through usb driver
+	// go sensors.PublishSensorData(client)
+
 	go PublishHealthMetrics(client)
 	SubscribeControlTopics(client)
 
